@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create production type table" author="leobloom">
+        <createTable tableName="production_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(32)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add values" author="leobloom">
+        <sql>
+            INSERT INTO production_type(id,value) VALUES(1, 'SOFT_FURNITURE');
+            INSERT INTO production_type(id,value) VALUES(2, 'STORING_FURNITURE');
+            INSERT INTO production_type(id,value) VALUES(3, 'OFFICE_FURNITURE');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

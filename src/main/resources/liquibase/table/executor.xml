@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create executor table" author="leobloom">
+        <createTable tableName="executor">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_executor_department"
+                             referencedTableName="department" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add values" author="leobloom">
+        <sql>
+            INSERT INTO executor (id,name,department_id)
+            SELECT x.id, 'executor №' || x.id,1
+            FROM generate_series(1,10) AS x(id);
+
+            INSERT INTO executor (id,name,department_id)
+            SELECT x.id, 'executor №' || x.id,2
+            FROM generate_series(11,20) AS x(id);
+
+            INSERT INTO executor (id,name,department_id)
+            SELECT x.id, 'executor №' || x.id,3
+            FROM generate_series(21,30) AS x(id);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
