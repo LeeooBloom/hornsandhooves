@@ -19,7 +19,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="add values" author="leobloom">
+    <changeSet id="add values" author="leobloom" dbms="postgresql">
         <sql>
             INSERT INTO executor (id,name,department_id)
             SELECT x.id, 'executor №' || x.id,1
